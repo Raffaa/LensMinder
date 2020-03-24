@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#f9fafd</color>
+    <color name="primaryLightColor">#ffffff</color>
+    <color name="primaryDarkColor">#c7c7c7</color>
+    <color name="secondaryColor">#5364e0</color>
+    <color name="secondaryLightColor">#8b91ff</color>
+    <color name="secondaryDarkColor">#003aad</color>
+    <color name="primaryTextColor">#000000</color>
+    <color name="secondaryTextColor">#ffffff</color>
+
+    <!-- DateTime Picker Fix -->
+    <color name="mti_bg_lbl_date_selected_color">@color/secondaryColor</color>
+    <color name="mti_ring_lbl_date_color">@android:color/transparent</color>
+</resources>

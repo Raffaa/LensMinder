@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name" translatable="false">LensMinder</string>
+    <!-- TitleBar -->
+    <string name="titleBar_hi">Hi</string>
+    <!-- LensesArea -->
+    <string name="lensArea_lxLabel">Left</string>
+    <string name="lensArea_rxLabel">Right</string>
+    <string name="lensArea_countdownPlaceholder" translatable="false">-</string>
+    <string name="lensArea_ETAPlaceholder" translatable="false">- - -</string>
+    <!-- AdvicesArea -->
+    <string name="advicesArea_title">Did you know?</string>
+    <!-- Spinner -->
+    <string-array name="str_arr_spinner">
+        <item>Biweekly</item>
+        <item>Monthly</item>
+        <item>Bimonthly</item>
+        <item>Quarterly</item>
+        <item>Annual</item>
+    </string-array>
+</resources>

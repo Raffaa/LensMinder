@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_nav"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="it.raffinato.dev.lensminder.ui.home.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_storeFragment"
+            app:destination="@id/storeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_BSNewLensesFragment"
+            app:destination="@id/BSNewLensesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/storeFragment"
+        android:name="it.raffinato.dev.lensminder.ui.store.StoreFragment"
+        android:label="store_fragment"
+        tools:layout="@layout/store_fragment" />
+    <dialog
+        android:id="@+id/BSNewLensesFragment"
+        android:name="it.raffinato.dev.lensminder.ui.newlenses.BSNewLensesFragment"
+        android:label="bs_new_lenses_fragment"
+        tools:layout="@layout/bs_new_lenses_fragment" >
+        <argument
+            android:name="model"
+            app:argType="it.raffinato.dev.lensminder.utils.LensesWrapper"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
+</navigation>

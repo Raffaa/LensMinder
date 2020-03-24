@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="titleBar_hi">Ciao</string>
+    <string name="lensArea_lxLabel">Sinistra</string>
+    <string name="lensArea_rxLabel">Destra</string>
+    <string name="advicesArea_title">Lo sapevi?</string>
+    <string-array name="str_arr_spinner">
+        <item>Bisettimanali</item>
+        <item>Mensili</item>
+        <item>Bimensili</item>
+        <item>Quadrimestrali</item>
+        <item>Annuali</item>
+    </string-array>
+</resources>

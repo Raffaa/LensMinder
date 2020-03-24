@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/datepicker"
+        style="@style/Label"
+        android:text="Open date"
+        android:layout_marginBottom="4dp"/>
+    <com.github.badoualy.datepicker.DatePickerTimeline
+        android:id="@+id/datepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:mti_followScroll="false"
+        app:mti_tabSelectedColor="@color/secondaryLightColor"
+        app:mti_lblDayColor="@color/primaryDarkColor"
+        app:mti_tabBeforeSelectionColor="@color/primaryDarkColor"
+        app:mti_primaryColor="@android:color/transparent"
+        app:mti_lblDateColor="@color/primaryTextColor"
+        app:mti_bkgTimelineColor="@android:color/transparent"
+        app:mti_yearOnNewLine="false"
+        app:mti_yearDigitCount="0"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/spinner"
+        style="@style/Label"
+        android:text="Type"
+        android:layout_marginBottom="4dp"/>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryTextColor"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
