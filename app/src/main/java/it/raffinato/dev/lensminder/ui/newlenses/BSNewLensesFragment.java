@@ -23,6 +23,7 @@ import it.raffinato.dev.lensminder.ui.BottomSheetBaseFragment;
 import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.enums.Duration;
+import it.raffinato.dev.lensminder.utils.view.LensSwitch;
 
 public class BSNewLensesFragment extends BottomSheetBaseFragment {
 
@@ -36,7 +37,7 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
         super.onCreate(savedInstanceState);
 
         Bundle b = getArguments();
-        if(b != null) {
+        if (b != null) {
             lenses = BSNewLensesFragmentArgs.fromBundle(getArguments()).getModel();
             lensRepo = LensesRepository.getInstance();
         }
@@ -45,10 +46,13 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        View leftView = view.findViewById(R.id.leftLens);
+        View rightView = view.findViewById(R.id.rightLens);
 
-        initSpinners(view);
-        initDatePicker(view);
-        initSaveButton(view);
+        initSwitch(view, leftView, rightView);
+        initSpinners(leftView, rightView);
+        initDatePicker(leftView, rightView);
+        initSaveButton(view, leftView, rightView);
     }
 
     @Override
@@ -56,31 +60,46 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
         this.layout = R.layout.bs_new_lenses_fragment;
     }
 
-    private void initSpinners(View root) {
-        Spinner spinner = root.findViewById(R.id.spinner);
-        spinner.setAdapter(ArrayAdapter.createFromResource(root.getContext(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
+    private void initSwitch(View view, View left, View right) {
+        LensSwitch lensSwitch = view.findViewById(R.id.lensSwitch);
+        lensSwitch.setViews(left, right);
+        /* TODO: capire se è utile settare il flag
         if(lenses != null) {
-            spinner.setSelection(lenses.getLxLensDuration().getId());
+            lensSwitch.setEqualSelected(lenses.areEqual());
         }
+         */
     }
 
-    private void initDatePicker(View view) {
-        DatePickerTimeline datePickerTimeline = view.findViewById(R.id.datepicker);
-        DateTime now = DateTime.now();
-        datePickerTimeline.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
-        datePickerTimeline.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 31);
-        datePickerTimeline.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
+    private void initSpinners(View leftView, View rightView) {
+        Spinner leftSpinner = leftView.findViewById(R.id.spinner);
+        Spinner rightSpinner = rightView.findViewById(R.id.spinner);
+        setSpinnerAdapter(leftSpinner);
+        setSpinnerAdapter(rightSpinner);
+
     }
 
-    private void initSaveButton(final View view) {
+    private void initDatePicker(View leftView, View rightView) {
+        DatePickerTimeline leftDatepicker = leftView.findViewById(R.id.datepicker);
+        DatePickerTimeline rightDatepicker = rightView.findViewById(R.id.datepicker);
+        setDatepickerRange(leftDatepicker);
+        setDatepickerRange(rightDatepicker);
+    }
+
+    private void initSaveButton(final View view, final View leftView, final View rightView) {
         initProgressBar(view);
         MaterialButton saveButton = view.findViewById(R.id.saveButton);
+        final LensSwitch lensSwitch = view.findViewById(R.id.lensSwitch);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showProgressBar();
                 v.setVisibility(View.INVISIBLE);
-                lensRepo.addLenses(lenses, getNewLenses(view));
+                if(lensSwitch.isEqualSelected()) {
+                    lensRepo.addLenses(lenses, getNewLenses(leftView));
+                } else {
+                    lensRepo.addLenses(lenses, getNewLenses(leftView, rightView));
+                }
+
                 dismiss();
             }
         });
@@ -90,16 +109,37 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
         this.progressBar = view.findViewById(R.id.progressBar);
     }
 
+    private void setSpinnerAdapter(Spinner spinner) {
+        spinner.setAdapter(ArrayAdapter.createFromResource(spinner.getContext(), R.array.str_arr_spinner, R.layout.support_simple_spinner_dropdown_item));
+        if (lenses != null) {
+            spinner.setSelection(lenses.getLxLensDuration().getId());
+        }
+    }
+
+    private void setDatepickerRange(DatePickerTimeline datePickerTimeline) {
+        DateTime now = DateTime.now();
+        datePickerTimeline.setFirstVisibleDate(now.getYear() - 1, Calendar.JANUARY, 1);
+        datePickerTimeline.setLastVisibleDate(now.getYear() + 2, Calendar.DECEMBER, 31);
+        datePickerTimeline.setSelectedDate(now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
+    }
+
     private void showProgressBar() {
         this.progressBar.setVisibility(View.VISIBLE);
     }
 
-    private LensesWrapper getNewLenses(View view) {
+    private Lens getLens(View view) {
         DatePickerTimeline datePickerTimeline = view.findViewById(R.id.datepicker);
         AppCompatSpinner spinner = view.findViewById(R.id.spinner);
-
         DateTime date = new DateTime().withDate(datePickerTimeline.getSelectedYear(), datePickerTimeline.getSelectedMonth() + 1, datePickerTimeline.getSelectedDay());
-        Lens lxLens = new Lens(date, Duration.fromSpinnerSelection(spinner.getSelectedItemPosition()));
-        return new LensesWrapper(lxLens, lxLens);
+        return new Lens(date, Duration.fromSpinnerSelection(spinner.getSelectedItemPosition()));
+    }
+
+    private LensesWrapper getNewLenses(View view) {
+        Lens lens = getLens(view);
+        return new LensesWrapper(lens);
+    }
+
+    private LensesWrapper getNewLenses(View leftView, View rightView) {
+        return new LensesWrapper(getLens(leftView), getLens(rightView));
     }
 }

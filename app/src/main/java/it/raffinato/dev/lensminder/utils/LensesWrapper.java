@@ -29,6 +29,12 @@ public class LensesWrapper implements Serializable {
         this._id = -1;
     }
 
+    public LensesWrapper(Lens lens) {
+        this.lxLens = lens;
+        this.rxLens = lens;
+        this._id = -1;
+    }
+
     public DateTime getLxLensInitialDate() {
         return this.lxLens.getInitialDate();
     }
@@ -93,5 +99,9 @@ public class LensesWrapper implements Serializable {
         }
 
         return model;
+    }
+
+    public boolean areEqual() {
+        return getLxLensDuration() == getRxLensDuration();
     }
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <it.raffinato.dev.lensminder.utils.view.SwitchItem
+        android:id="@+id/left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".35"
+        app:text="Lente\nSinistra"
+        app:selected="true"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/equal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".3"
+        app:srcCompat="@drawable/ic_equal"/>
+    <it.raffinato.dev.lensminder.utils.view.SwitchItem
+        android:id="@+id/right"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight=".35"
+        app:text="Lente\nDestra"/>
+</androidx.appcompat.widget.LinearLayoutCompat>
