@@ -20,6 +20,7 @@ import java.util.Calendar;
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.repository.LensesRepository;
 import it.raffinato.dev.lensminder.ui.BottomSheetBaseFragment;
+import it.raffinato.dev.lensminder.utils.AsyncListener;
 import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.enums.Duration;
@@ -39,7 +40,7 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
         Bundle b = getArguments();
         if (b != null) {
             lenses = BSNewLensesFragmentArgs.fromBundle(getArguments()).getModel();
-            lensRepo = LensesRepository.getInstance();
+            lensRepo = LensesRepository.instance();
         }
     }
 
@@ -94,13 +95,19 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
             public void onClick(View v) {
                 showProgressBar();
                 v.setVisibility(View.INVISIBLE);
-                if(lensSwitch.isEqualSelected()) {
-                    lensRepo.addLenses(lenses, getNewLenses(leftView));
-                } else {
-                    lensRepo.addLenses(lenses, getNewLenses(leftView, rightView));
-                }
+                //TODO: trovare un modo migliore. SharedViewModel?
+                AsyncListener listener = new AsyncListener() {
+                    @Override
+                    public void onDone() {
+                        dismiss();
+                    }
+                };
 
-                dismiss();
+                if (lensSwitch.isEqualSelected()) {
+                    lensRepo.addLenses(lenses, getNewLenses(leftView), listener);
+                } else {
+                    lensRepo.addLenses(lenses, getNewLenses(leftView, rightView), listener);
+                }
             }
         });
     }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <!-- Titolo di pannello -->
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:text="Aggiungi il dio"
+        style="@style/GridCardTitle" />
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/case_lenses_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:inputType="number"
+        android:padding="4dp"
+        android:textColor="@color/secondaryColor"
+        android:textSize="30sp"
+        android:selectAllOnFocus="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/case_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:text="Reset"
+            style="@style/SaveButton"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/case_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Save"
+            style="@style/SaveButton"/>
+    </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

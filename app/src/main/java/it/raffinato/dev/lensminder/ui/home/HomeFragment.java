@@ -1,15 +1,19 @@
 package it.raffinato.dev.lensminder.ui.home;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,6 +22,7 @@ import androidx.navigation.Navigation;
 
 import com.gelitenight.waveview.library.WaveView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.joda.time.format.DateTimeFormat;
 
@@ -29,6 +34,8 @@ import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.WaveHelper;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class HomeFragment extends Fragment {
 
     private WaveHelper rxWaveHelper;
@@ -38,11 +45,21 @@ public class HomeFragment extends Fragment {
 
     private LensesWrapper activeLenses;
 
+    public static final String sharedPredKey = "splensesincase";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        Activity a = getActivity();
+        if(a != null) {
+            SharedPreferences pref = getActivity().getSharedPreferences(sharedPredKey, MODE_PRIVATE);
+            mViewModel.setSharedPrefLiveData(pref);
+        } else {
+            Log.e(getClass().getName(), "Activity NULL;");
+        }
+
     }
 
     @Nullable
@@ -96,6 +113,29 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mViewModel.getSharedPrefLiveData().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer value) {
+                editStocksView(view, value);
+            }
+        });
+
+    }
+
+    private void editStocksView(View view, Integer value) {
+        FrameLayout container = view.findViewById(R.id.frameLayoutStockNumber);
+        AppCompatImageView icon = view.findViewById(R.id.stocksIcon);
+        MaterialTextView materialTextView = view.findViewById(R.id.stockNumber);
+
+        if(value >= 0) {
+            icon.setVisibility(View.GONE);
+            container.setVisibility(View.VISIBLE);
+            materialTextView.setText(value.toString());
+        } else {
+            icon.setVisibility(View.VISIBLE);
+            container.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -127,6 +167,7 @@ public class HomeFragment extends Fragment {
                             Log.d("YYY", "HISTORY");
                             break;
                         case R.id.stocks:
+                            Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToBSStocksFragment());
                             Log.d("YYY", "STOCKS");
                             break;
                         case R.id.settings:
@@ -139,8 +180,6 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
-
-        gridLayout.requestLayout();
     }
 
     private void initWaveView(WaveView waveView) {

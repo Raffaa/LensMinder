@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 import it.raffinato.dev.lensminder.LensMinderApplication;
 import it.raffinato.dev.lensminder.room.LensesModel;
 import it.raffinato.dev.lensminder.room.dao.LensesDao;
+import it.raffinato.dev.lensminder.utils.AsyncListener;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 
 public class LensesRepository {
@@ -22,7 +23,7 @@ public class LensesRepository {
         executor = Executors.newSingleThreadExecutor();
     }
 
-    public static LensesRepository getInstance() {
+    public static LensesRepository instance() {
         if (instance == null) {
             synchronized (LensesRepository.class) {
                 if (instance == null)
@@ -37,11 +38,17 @@ public class LensesRepository {
         return lensesDao.getActiveLenses();
     }
 
-    public void addLenses(final LensesWrapper currentActive, final LensesWrapper brandNew) {
+    public void addLenses(final LensesWrapper currentActive, final LensesWrapper brandNew, final AsyncListener asyncListener) {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                lensesDao.addNewLenses(currentActive.toModel().deactivate(), brandNew.toModel());
+                if(currentActive != null) {
+                    lensesDao.addNewLenses(currentActive.toModel().deactivate(), brandNew.toModel());
+                } else {
+                    lensesDao.insert(brandNew.toModel());
+                }
+
+                asyncListener.onDone();
             }
         });
     }

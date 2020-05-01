@@ -5,7 +5,7 @@ apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.raffinato.contactlensreminder"
         minSdkVersion 23
@@ -36,7 +36,7 @@ allprojects {
 }
 
 dependencies {
-    def nav_version = "2.2.1"
+    def nav_version = "2.2.2"
     def room_version = "2.2.5"
     def lifecycle_version = "2.2.0"
 
@@ -59,14 +59,14 @@ dependencies {
     //implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     //androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     //Firebase
-    implementation 'com.google.firebase:firebase-analytics:17.2.3'
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta02'
+    implementation 'com.google.firebase:firebase-analytics:17.4.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0'
     //WaveView
     implementation 'com.gelitenight.waveview:waveview:1.0.0'
     //JodaTime
     implementation 'joda-time:joda-time:2.9.4'
     //DatePickerTimeline
-    implementation 'com.github.Raffaa:datepicker-timeline:master-SNAPSHOT'
+    implementation 'com.github.Raffaa:datepicker-timeline:1.0.0'
     //Loading Wheel
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     //Test

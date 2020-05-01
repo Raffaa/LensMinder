@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_nav"
@@ -15,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_BSNewLensesFragment"
             app:destination="@id/BSNewLensesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_BSStocksFragment"
+            app:destination="@id/BSStocksFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -31,5 +35,14 @@
             app:argType="it.raffinato.dev.lensminder.utils.LensesWrapper"
             app:nullable="true"
             android:defaultValue="@null" />
+    </dialog>
+    <dialog
+        android:id="@+id/BSStocksFragment"
+        android:name="it.raffinato.dev.lensminder.ui.stocks.BSStocksFragment"
+        android:label="BSStocksFragment" >
+        <argument
+            android:name="stockNumber"
+            app:argType="integer"
+            android:defaultValue="0" />
     </dialog>
 </navigation>
