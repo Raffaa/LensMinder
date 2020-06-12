@@ -8,6 +8,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.github.badoualy.datepicker.DatePickerTimeline;
 import com.github.ybq.android.spinkit.SpinKitView;
@@ -15,6 +16,8 @@ import com.google.android.material.button.MaterialButton;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import it.raffinato.dev.lensminder.R;
@@ -63,7 +66,21 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
 
     private void initSwitch(View view, View left, View right) {
         LensSwitch lensSwitch = view.findViewById(R.id.lensSwitch);
-        lensSwitch.setViews(left, right);
+        //lensSwitch.setViews(left, right);
+
+        ViewPager2 viewPager = view.findViewById(R.id.viewPager);
+        SwitchPageAdapter adapter = new SwitchPageAdapter(new ArrayList<Integer>(Arrays.asList(R.layout.new_lens_area, R.layout.new_lens_area)));
+        viewPager.setAdapter(adapter);
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                int a = position;
+                int b = positionOffsetPixels;
+                float c = positionOffset;
+            }
+        });
+
         /* TODO: capire se è utile settare il flag
         if(lenses != null) {
             lensSwitch.setEqualSelected(lenses.areEqual());
