@@ -20,7 +20,7 @@ public class LensesRepository {
 
     private LensesRepository() {
         lensesDao = LensMinderApplication.getDB().lensesDao();
-        executor = Executors.newSingleThreadExecutor();
+        executor = Executors.newCachedThreadPool();
     }
 
     public static LensesRepository instance() {

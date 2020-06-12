@@ -27,6 +27,7 @@ import com.google.android.material.textview.MaterialTextView;
 import org.joda.time.format.DateTimeFormat;
 
 import java.util.List;
+import java.util.Locale;
 
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.room.LensesModel;
@@ -133,7 +134,7 @@ public class HomeFragment extends Fragment {
         if(value >= 0) {
             icon.setVisibility(View.GONE);
             container.setVisibility(View.VISIBLE);
-            materialTextView.setText(value.toString());
+            materialTextView.setText(String.format(Locale.getDefault(), "%d", value));
         } else {
             icon.setVisibility(View.VISIBLE);
             container.setVisibility(View.GONE);

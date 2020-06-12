@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class LensSwitch extends FrameLayout {
     private ImageView equal;
     //Colors
     private int selectedColor, notSelectedColor;
-    //Pages
-    private View leftView, rightView;
+    //ViewPager
+    private ViewPager2 vp;
 
     private boolean equalSelected = false;
 
@@ -48,14 +49,13 @@ public class LensSwitch extends FrameLayout {
 
         lx = findViewById(R.id.left);
         rx = findViewById(R.id.right);
-        equal = findViewById(R.id.equal);
+        //equal = findViewById(R.id.equal);
         setColors();
         setListeners();
     }
 
-    public void setViews(View left, View right) {
-        this.leftView = left;
-        this.rightView = right;
+    public void setViewPager(ViewPager2 viewPager) {
+        this.vp = viewPager;
     }
 
     private void setColors() {
@@ -66,9 +66,9 @@ public class LensSwitch extends FrameLayout {
     private void setListeners() {
         lxListener();
         rxListener();
-        equalListener();
+        //equalListener();
     }
-
+/*
     private void equalListener() {
         equal.setOnClickListener(new OnClickListener() {
             @Override
@@ -89,6 +89,7 @@ public class LensSwitch extends FrameLayout {
             }
         });
     }
+ */
 
     private void rxListener() {
         rx.setOnClickListener(new OnClickListener() {
@@ -117,17 +118,15 @@ public class LensSwitch extends FrameLayout {
     }
 
     private boolean areViewsSet() {
-        return leftView != null && rightView != null;
+        return this.vp != null && this.vp.getAdapter() != null && this.vp.getAdapter().getItemCount() == 2;
     }
 
     private void showLeftView() {
-        leftView.setVisibility(VISIBLE);
-        rightView.setVisibility(GONE);
+        this.vp.setCurrentItem(0, true);
     }
 
     private void showRightView() {
-        leftView.setVisibility(GONE);
-        rightView.setVisibility(VISIBLE);
+        this.vp.setCurrentItem(1, true);
     }
 
     public boolean isEqualSelected() {

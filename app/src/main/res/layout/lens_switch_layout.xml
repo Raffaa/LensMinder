@@ -10,19 +10,13 @@
         android:id="@+id/left"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".35"
+        android:layout_weight=".5"
         app:text="Lente\nSinistra"
         app:selected="true"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/equal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight=".3"
-        app:srcCompat="@drawable/ic_equal"/>
     <it.raffinato.dev.lensminder.utils.view.SwitchItem
         android:id="@+id/right"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight=".35"
+        android:layout_weight=".5"
         app:text="Lente\nDestra"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
