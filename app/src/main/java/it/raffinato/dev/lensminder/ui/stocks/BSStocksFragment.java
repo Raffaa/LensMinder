@@ -55,7 +55,7 @@ public class BSStocksFragment extends BottomSheetBaseFragment {
             @Override
             public void onClick(View v) {
                 //TODO: trovare modo carino
-                SharedPreferences.Editor editor = view.getContext().getSharedPreferences(HomeFragment.sharedPredKey, Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = view.getContext().getSharedPreferences(HomeFragment.sharedPrefKey, Context.MODE_PRIVATE).edit();
                 editor.putInt("lensesremaining", Integer.parseInt(et.getText().toString()));
                 editor.apply();
                 dismiss();

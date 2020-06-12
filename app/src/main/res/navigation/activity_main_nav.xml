@@ -42,7 +42,6 @@
         android:label="BSStocksFragment" >
         <argument
             android:name="stockNumber"
-            app:argType="integer"
-            android:defaultValue="0" />
+            app:argType="integer" />
     </dialog>
 </navigation>

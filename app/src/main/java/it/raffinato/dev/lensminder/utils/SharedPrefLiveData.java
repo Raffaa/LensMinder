@@ -3,8 +3,9 @@ package it.raffinato.dev.lensminder.utils;
 import android.content.SharedPreferences;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-public class SharedPrefLiveData extends LiveData<Integer> {
+public class SharedPrefLiveData extends MutableLiveData<Integer> {
 
     private String key = "lensesremaining";
     private SharedPreferences pref;
@@ -12,7 +13,7 @@ public class SharedPrefLiveData extends LiveData<Integer> {
     public SharedPrefLiveData(SharedPreferences pref) {
         super();
         this.pref = pref;
-        this.setValue(pref.getInt(key, -1));
+        this.postValue(pref.getInt(key, -1));
     }
 
     private SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {

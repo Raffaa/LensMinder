@@ -43,9 +43,11 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel mViewModel;
 
+    private int stockNumber = 0;
+
     private LensesWrapper activeLenses;
 
-    public static final String sharedPredKey = "splensesincase";
+    public static final String sharedPrefKey = "splensesincase";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class HomeFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         Activity a = getActivity();
         if(a != null) {
-            SharedPreferences pref = getActivity().getSharedPreferences(sharedPredKey, MODE_PRIVATE);
+            SharedPreferences pref = getActivity().getSharedPreferences(sharedPrefKey, MODE_PRIVATE);
             mViewModel.setSharedPrefLiveData(pref);
         } else {
             Log.e(getClass().getName(), "Activity NULL;");
@@ -117,6 +119,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(Integer value) {
                 editStocksView(view, value);
+                stockNumber = value;
             }
         });
 
@@ -167,7 +170,7 @@ public class HomeFragment extends Fragment {
                             Log.d("YYY", "HISTORY");
                             break;
                         case R.id.stocks:
-                            Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToBSStocksFragment());
+                            Navigation.findNavController(v).navigate(HomeFragmentDirections.actionHomeFragmentToBSStocksFragment(stockNumber));
                             Log.d("YYY", "STOCKS");
                             break;
                         case R.id.settings:
