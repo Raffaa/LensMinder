@@ -8,13 +8,6 @@ public class SharedPrefLiveData extends MutableLiveData<Integer> {
 
     private final String key = "lensesremaining";
     private final SharedPreferences pref;
-
-    public SharedPrefLiveData(SharedPreferences pref) {
-        super();
-        this.pref = pref;
-        this.postValue(pref.getInt(key, -1));
-    }
-
     private final SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -23,6 +16,12 @@ public class SharedPrefLiveData extends MutableLiveData<Integer> {
             }
         }
     };
+
+    public SharedPrefLiveData(SharedPreferences pref) {
+        super();
+        this.pref = pref;
+        this.postValue(pref.getInt(key, -1));
+    }
 
     @Override
     protected void onActive() {

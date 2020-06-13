@@ -10,7 +10,8 @@
       "client_info": {
         "mobilesdk_app_id": "1:375647097439:android:fca18c3d894ef25a6e81ea",
         "android_client_info": {
-          "package_name": "com.raffinato.contactlensreminder.debug" //TODO: Togliere il debug
+          "package_name": "com.raffinato.contactlensreminder.debug"
+          //TODO: Togliere il debug
         }
       },
       "oauth_client": [

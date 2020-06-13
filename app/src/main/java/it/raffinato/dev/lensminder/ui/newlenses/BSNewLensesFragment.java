@@ -71,7 +71,7 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
         LensSwitch lensSwitch = view.findViewById(R.id.lensSwitch);
 
         lensSwitch.setViewPager(viewPager);
-        if(lenses != null) {
+        if (lenses != null) {
             //lensSwitch.setEqualSelected(lenses.areEqual());
         }
     }

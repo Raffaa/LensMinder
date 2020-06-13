@@ -42,7 +42,7 @@ public class LensesRepository {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                if(currentActive != null) {
+                if (currentActive != null) {
                     lensesDao.addNewLenses(currentActive.toModel().deactivate(), brandNew.toModel());
                 } else {
                     lensesDao.insert(brandNew.toModel());

@@ -36,7 +36,7 @@ public class SwitchItem extends LinearLayoutCompat {
         init(attrs);
     }
 
-    private void init(AttributeSet attrs){
+    private void init(AttributeSet attrs) {
         inflate(getContext(), R.layout.switch_item, this);
 
         text = findViewById(R.id.text);
@@ -44,11 +44,11 @@ public class SwitchItem extends LinearLayoutCompat {
         selectedColor = getResources().getColor(R.color.secondaryColor, null);
         notSelectedColor = getResources().getColor(R.color.primaryTextColor, null);
         disabledColor = getResources().getColor(R.color.primaryDarkColor, null);
-        if(attrs != null) {
+        if (attrs != null) {
             TypedArray attributes = getContext().obtainStyledAttributes(attrs, R.styleable.SwitchItem);
             text.setText(attributes.getString(R.styleable.SwitchItem_text));
             boolean selected = attributes.getBoolean(R.styleable.SwitchItem_selected, false);
-            if(selected) {
+            if (selected) {
                 select();
             }
             attributes.recycle();
@@ -56,7 +56,7 @@ public class SwitchItem extends LinearLayoutCompat {
     }
 
     public void setSelected(boolean selected) {
-        if(selected) {
+        if (selected) {
             select();
         } else {
             deselect();
@@ -83,5 +83,5 @@ public class SwitchItem extends LinearLayoutCompat {
     private void setColor(int color) {
         text.setTextColor(color);
         indicator.setImageTintList(ColorStateList.valueOf(color));
-}
+    }
 }

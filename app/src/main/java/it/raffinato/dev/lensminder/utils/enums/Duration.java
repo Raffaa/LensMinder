@@ -2,7 +2,7 @@ package it.raffinato.dev.lensminder.utils.enums;
 
 public enum Duration {
 
-   BIWEEKLY(14, 0), MONTHLY(30, 1), BIMONTHLY(60, 2), QUARTERLY(120, 3), ANNUAL(365, 4), UNKNOWN(1, 5);
+    BIWEEKLY(14, 0), MONTHLY(30, 1), BIMONTHLY(60, 2), QUARTERLY(120, 3), ANNUAL(365, 4), UNKNOWN(1, 5);
 
     private final int t, id;
 

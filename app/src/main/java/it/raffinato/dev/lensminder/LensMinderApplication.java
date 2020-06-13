@@ -11,26 +11,25 @@ import it.raffinato.dev.lensminder.room.ApplicationDB;
 import static it.raffinato.dev.lensminder.ui.home.HomeFragment.sharedPrefKey;
 
 public class LensMinderApplication extends Application {
+    public static final String DBDateTimeFormat = "dd/MM/yyyy";
     private static LensMinderApplication instance;
     private static ApplicationDB database;
-
-    public static final String DBDateTimeFormat = "dd/MM/yyyy";
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
-    }
 
     public static LensMinderApplication instance() {
         return instance;
     }
 
     public static ApplicationDB getDB() {
-        if(database == null){
+        if (database == null) {
             database = Room.databaseBuilder(instance, ApplicationDB.class, "lenstimerv2.db").build();
         }
         return database;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
     }
 
     public void setStockLevel(int value) {

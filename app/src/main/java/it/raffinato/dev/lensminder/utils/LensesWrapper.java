@@ -94,7 +94,7 @@ public class LensesWrapper implements Serializable {
         model.setDurationRx(getRxLensDuration().getTime());
         model.setActiveRx(isRxLensActive());
         //id
-        if(_id > 0) {
+        if (_id > 0) {
             model.setId(_id);
         }
 

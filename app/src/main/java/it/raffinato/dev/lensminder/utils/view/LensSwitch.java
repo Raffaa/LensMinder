@@ -13,6 +13,7 @@ import it.raffinato.dev.lensminder.R;
 
 public class LensSwitch extends FrameLayout {
 
+    private final boolean equalSelected = false;
     //Switch Components
     private SwitchItem lx, rx;
     private ImageView equal;
@@ -20,8 +21,6 @@ public class LensSwitch extends FrameLayout {
     private int selectedColor, notSelectedColor;
     //ViewPager
     private ViewPager2 vp;
-
-    private final boolean equalSelected = false;
 
     public LensSwitch(Context context) {
         super(context);

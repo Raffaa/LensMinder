@@ -42,7 +42,7 @@ public class SwitchPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if(lenses != null) {
+        if (lenses != null) {
             switch (position) {
                 case 0:
                     ((SliderViewHolder) holder).spinner.setSelection(lenses.getLxLensDuration().getId());
