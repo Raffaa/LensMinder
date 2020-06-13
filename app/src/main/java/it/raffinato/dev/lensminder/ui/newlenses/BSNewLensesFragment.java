@@ -25,6 +25,7 @@ import it.raffinato.dev.lensminder.utils.AsyncListener;
 import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.enums.Duration;
+import it.raffinato.dev.lensminder.utils.notification.NotificationScheduler;
 import it.raffinato.dev.lensminder.utils.view.LensSwitch;
 
 public class BSNewLensesFragment extends BottomSheetBaseFragment {
@@ -85,15 +86,17 @@ public class BSNewLensesFragment extends BottomSheetBaseFragment {
             public void onClick(View v) {
                 showProgressBar();
                 v.setVisibility(View.INVISIBLE);
+                final LensesWrapper newLenses = getNewLenses(viewPager, lensSwitch.isEqualSelected());
                 //TODO: trovare un modo migliore. SharedViewModel?
                 AsyncListener listener = new AsyncListener() {
                     @Override
                     public void onDone() {
-                        dismiss();
+                        NotificationScheduler.initNotifications(newLenses);
                         LensMinderApplication.instance().decreaseStockLevelByN(2);
+                        dismiss();
                     }
                 };
-                lensRepo.addLenses(lenses, getNewLenses(viewPager, lensSwitch.isEqualSelected()), listener);
+                lensRepo.addLenses(lenses, newLenses, listener);
 
             }
         });

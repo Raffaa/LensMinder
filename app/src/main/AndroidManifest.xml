@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="it.raffinato.dev.lensminder">
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:name=".LensMinderApplication"
         android:fullBackupContent="true"
@@ -19,6 +19,15 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name="it.raffinato.dev.lensminder.utils.notification.AlarmReceiver"
+            android:enabled="false"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

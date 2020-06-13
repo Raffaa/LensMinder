@@ -25,7 +25,7 @@ public class HomeViewModel extends ViewModel {
     }
 
     LiveData<List<LensesModel>> getActiveLenses() {
-        return lensesRepository.getLenses();
+        return lensesRepository.getLastLenses();
     }
 
     SharedPrefLiveData getSharedPrefLiveData() {

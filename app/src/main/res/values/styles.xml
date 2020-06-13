@@ -46,6 +46,9 @@
         <item name="strokeColor">#3C8b91ff</item>
         <item name="android:layout_margin">4dp</item>
         <item name="cardCornerRadius">@dimen/homeCardCornerRadius</item>
+        <item name="android:maxHeight">150dp</item>
+        <item name="layout_constrainedHeight">true</item>
+        <item name="layout_constraintHeight_max">140dp</item>
         <item name="layout_constraintDimensionRatio">2.2:1</item>
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>

@@ -17,6 +17,12 @@ public abstract class LensesDao {
     @Query("SELECT * FROM lenses ORDER BY _id DESC LIMIT 2")
     public abstract LiveData<List<LensesModel>> getActiveLenses();
 
+    @Query("SELECT * FROM lenses ORDER BY _id DESC LIMIT 1")
+    public abstract List<LensesModel> getActiveLenses2();
+
+    @Query("SELECT * FROM lenses ORDER BY _id")
+    public abstract LiveData<List<LensesModel>> getLenses();
+
     @Insert()
     public abstract void insert(LensesModel l);
 

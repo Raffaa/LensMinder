@@ -34,8 +34,12 @@ public class LensesRepository {
         return instance;
     }
 
-    public LiveData<List<LensesModel>> getLenses() {
+    public LiveData<List<LensesModel>> getLastLenses() {
         return lensesDao.getActiveLenses();
+    }
+
+    public List<LensesModel> getLastLenses2() {
+        return lensesDao.getActiveLenses2();
     }
 
     public void addLenses(final LensesWrapper currentActive, final LensesWrapper brandNew, final AsyncListener asyncListener) {

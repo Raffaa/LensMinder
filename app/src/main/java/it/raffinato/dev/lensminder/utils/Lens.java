@@ -55,7 +55,7 @@ public class Lens implements Serializable {
     }
 
     int getRemainingTime() {
-        int remainingDays = Days.daysBetween(new DateTime().toDateTime(), this.expDate.toDateTime()).plus(1).getDays();
+        int remainingDays = Days.daysBetween(DateTime.now(), this.expDate.toDateTime().plusDays(1)).getDays();
         return Math.max(remainingDays, 0);
     }
 }
