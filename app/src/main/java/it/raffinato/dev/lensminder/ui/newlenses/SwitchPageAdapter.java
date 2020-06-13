@@ -22,9 +22,9 @@ import it.raffinato.dev.lensminder.utils.LensesWrapper;
 
 public class SwitchPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<Integer> layouts;
-    private List<View> views;
-    private LensesWrapper lenses;
+    private final List<Integer> layouts;
+    private final List<View> views;
+    private final LensesWrapper lenses;
 
     public SwitchPageAdapter(List<Integer> layouts, LensesWrapper lenses) {
         this.views = new ArrayList<>();
@@ -70,8 +70,8 @@ public class SwitchPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     static class SliderViewHolder extends RecyclerView.ViewHolder {
-        Spinner spinner;
-        DatePickerTimeline datePicker;
+        final Spinner spinner;
+        final DatePickerTimeline datePicker;
 
         public SliderViewHolder(View view) {
             super(view);

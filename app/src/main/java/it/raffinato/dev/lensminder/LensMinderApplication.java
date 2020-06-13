@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import androidx.room.Room;
 
 import it.raffinato.dev.lensminder.room.ApplicationDB;
-import it.raffinato.dev.lensminder.ui.home.HomeFragment;
 
 import static it.raffinato.dev.lensminder.ui.home.HomeFragment.sharedPrefKey;
 

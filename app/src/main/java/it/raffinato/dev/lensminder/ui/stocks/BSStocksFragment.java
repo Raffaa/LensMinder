@@ -1,7 +1,5 @@
 package it.raffinato.dev.lensminder.ui.stocks;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +12,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import it.raffinato.dev.lensminder.LensMinderApplication;
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.ui.BottomSheetBaseFragment;
-import it.raffinato.dev.lensminder.ui.home.HomeFragment;
 
 public class BSStocksFragment extends BottomSheetBaseFragment {
 

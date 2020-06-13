@@ -1,9 +1,6 @@
 package it.raffinato.dev.lensminder.utils.view;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -11,9 +8,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import it.raffinato.dev.lensminder.R;
 
@@ -27,7 +21,7 @@ public class LensSwitch extends FrameLayout {
     //ViewPager
     private ViewPager2 vp;
 
-    private boolean equalSelected = false;
+    private final boolean equalSelected = false;
 
     public LensSwitch(Context context) {
         super(context);

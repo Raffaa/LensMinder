@@ -1,16 +1,14 @@
 package it.raffinato.dev.lensminder.ui.store;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.lifecycle.ViewModelProvider;
 
 import it.raffinato.dev.lensminder.R;
 
@@ -22,7 +20,7 @@ public class StoreFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mViewModel = ViewModelProviders.of(this).get(StoreViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(StoreViewModel.class);
     }
 
     @Override
