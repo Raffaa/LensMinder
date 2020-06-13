@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_BSStocksFragment"
             app:destination="@id/BSStocksFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_TSUserInfoFragment"
+            app:destination="@id/TSUserInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -44,4 +47,8 @@
             android:name="stockNumber"
             app:argType="integer" />
     </dialog>
+    <dialog
+        android:id="@+id/TSUserInfoFragment"
+        android:name="it.raffinato.dev.lensminder.ui.userinfo.TSUserInfoFragment"
+        android:label="TSUserInfoFragment" />
 </navigation>
