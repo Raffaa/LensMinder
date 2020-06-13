@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import it.raffinato.dev.lensminder.LensMinderApplication;
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.ui.BottomSheetBaseFragment;
 import it.raffinato.dev.lensminder.ui.home.HomeFragment;
@@ -54,10 +55,7 @@ public class BSStocksFragment extends BottomSheetBaseFragment {
         bs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: trovare modo carino
-                SharedPreferences.Editor editor = view.getContext().getSharedPreferences(HomeFragment.sharedPrefKey, Context.MODE_PRIVATE).edit();
-                editor.putInt("lensesremaining", Integer.parseInt(et.getText().toString()));
-                editor.apply();
+                LensMinderApplication.instance().setStockLevel(Integer.parseInt(et.getText().toString()));
                 dismiss();
             }
         });

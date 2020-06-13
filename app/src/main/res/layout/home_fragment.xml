@@ -34,13 +34,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
-                <androidx.appcompat.widget.AppCompatImageView
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/userIcon"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/ic_account"
+                    app:cardCornerRadius="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:transitionName="shared_element_container">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_account"/>
+                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- Lenses Area -->
             <com.google.android.material.card.MaterialCardView
@@ -87,153 +94,126 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </FrameLayout>
             <!-- GridMenu Area -->
-            <GridLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/gridlayout"
-                android:columnCount="2"
+                android:id="@+id/linearLayout"
+                android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/framelayout"
                 android:layout_margin="@dimen/homeMargin">
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/shop"
-                    style="@style/GridMenuCard"
-                    app:cardBackgroundColor="@color/secondaryColor"
                     android:layout_marginBottom="16dp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/shopTitle"
-                            style="@style/GridCardTitle"
-                            android:textColor="@color/secondaryTextColor"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="Store" />
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/shopIcon"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:srcCompat="@drawable/ic_shop"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintDimensionRatio="W, 3:5" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/history"
-                    style="@style/GridMenuCard"
-                    android:layout_marginBottom="16dp">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/historyTitle"
-                            style="@style/GridCardTitle"
-                            android:textColor="@color/secondaryColor"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="History"/>
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/historyIcon"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:srcCompat="@drawable/ic_nodata"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintDimensionRatio="W, 3:5"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/stocks"
-                    style="@style/GridMenuCard">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/stocksTitle"
-                            style="@style/GridCardTitle"
-                            android:textColor="@color/secondaryColor"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="Stocks"/>
-                        <RelativeLayout
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintDimensionRatio="W, 3:5">
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/stocksIcon"
+                        android:layout_height="0dp"
+                        android:id="@+id/shop"
+                        style="@style/GridMenuCard"
+                        tools:ignore="MissingConstraints">
+                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:srcCompat="@drawable/ic_nodata" />
-                            <FrameLayout
-                                android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/shopTitle"
+                                style="@style/GridCardTitle"
+                                android:textColor="@color/secondaryColor"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:text="Store" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/shopIcon"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:scaleType="fitEnd"
+                                app:srcCompat="@drawable/ic_shop"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:layout_marginBottom="16dp">
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:id="@+id/stocks"
+                        style="@style/GridMenuCard"
+                        android:backgroundTint="@color/secondaryColor"
+                        tools:ignore="MissingConstraints">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/stocksTitle"
+                                style="@style/GridCardTitle"
+                                android:textColor="@color/secondaryTextColor"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:text="Stocks"/>
+                            <FrameLayout
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
                                 android:id="@+id/frameLayoutStockNumber"
-                                android:visibility="gone">
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
                                 <com.google.android.material.textview.MaterialTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:id="@+id/stockNumber"/>
+                                    android:id="@+id/stockNumber"
+                                    android:textColor="@color/secondaryTextColor"
+                                    style="@style/BoldTextView"/>
                             </FrameLayout>
-                    </RelativeLayout>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/settings"
-                    style="@style/GridMenuCard"
-                    app:cardBackgroundColor="@color/secondaryLightColor">
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginBottom="16dp">
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:id="@+id/history"
+                        style="@style/GridMenuCard"
+                        tools:ignore="MissingConstraints">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/settingsTitle"
-                            style="@style/GridCardTitle"
-                            android:textColor="@color/secondaryTextColor"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="Settings"/>
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/settingsIcon"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            app:srcCompat="@drawable/ic_settings"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintDimensionRatio="W, 3:5"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </GridLayout>
+                            android:padding="16dp">
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/historyTitle"
+                                style="@style/GridCardTitle"
+                                android:textColor="@color/secondaryColor"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:text="History"/>
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/historyIcon"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitEnd"
+                                app:srcCompat="@drawable/ic_nodata"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
             <!-- :) -->
             <FrameLayout
                 android:layout_width="match_parent"
@@ -241,7 +221,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="@dimen/homeMargin"
                 android:layout_marginEnd="@dimen/homeMargin"
-                app:layout_constraintTop_toBottomOf="@id/gridlayout">
+                app:layout_constraintTop_toBottomOf="@id/linearLayout">
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -272,4 +252,34 @@
             android:text="Add New Lenses"
             app:cornerRadius="24dp" />
     </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/greyOverlay"
+        android:background="@android:color/black"
+        android:alpha=".4"
+        android:visibility="gone"/>
+        <!-- UserInfo -->
+        <FrameLayout
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/topSheet"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="56dp"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="25dp"
+            android:background="@color/primaryColor"
+            app:elevation="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="testo di prova"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+        </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

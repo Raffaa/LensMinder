@@ -44,11 +44,11 @@
     <!-- GridMenu -->
     <style name="GridMenuCard" parent="Widget.MaterialComponents.CardView">
         <item name="strokeColor">#3C8b91ff</item>
-        <item name="android:layout_columnWeight">1</item>
-        <item name="android:layout_rowWeight">1</item>
-        <item name="android:layout_rowSpan">2</item>
-        <item name="cardCornerRadius">@dimen/homeCardCornerRadius</item>
         <item name="android:layout_margin">4dp</item>
+        <item name="cardCornerRadius">@dimen/homeCardCornerRadius</item>
+        <item name="layout_constraintDimensionRatio">2.2:1</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
     </style>
 
     <style name="GridCardTitle" parent="BoldTextView">
