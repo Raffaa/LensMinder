@@ -289,10 +289,10 @@ public class HomeFragment extends Fragment {
             AppCompatTextView rxCountdown = view.findViewById(R.id.rx_countdown);
             AppCompatTextView rxExpDate = view.findViewById(R.id.rx_eta);
 
-            lxCountdown.setText(activeLenses.getLxLensRemainingTime().toString());
+            lxCountdown.setText(String.format(Locale.getDefault(), "%d", activeLenses.getLxLensRemainingTime()));
             lxExpDate.setText(activeLenses.getLxLensExpDate().toString(DateTimeFormat.shortDate()));
             lxWaveHelper.changeLevel(activeLenses.getLxLensRemainingTime() / (float) activeLenses.getLxLensDuration().getTime());
-            rxCountdown.setText(activeLenses.getRxLensRemainingTime().toString());
+            rxCountdown.setText(String.format(Locale.getDefault(), "%d", activeLenses.getRxLensRemainingTime()));
             rxExpDate.setText(activeLenses.getRxLensExpDate().toString(DateTimeFormat.shortDate()));
             rxWaveHelper.changeLevel(activeLenses.getRxLensRemainingTime() / (float) activeLenses.getRxLensDuration().getTime());
         }
