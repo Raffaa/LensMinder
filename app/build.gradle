@@ -70,6 +70,8 @@ dependencies {
     implementation 'com.github.Raffaa:datepicker-timeline:1.0.0'
     //Loading Wheel
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    //TopSheet
+    implementation 'com.github.Raffaa:AndroidTopSheet:0.52'
     //Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -22,6 +22,7 @@ import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
 import com.gelitenight.waveview.library.WaveView;
+import com.github.techisfun.android.topsheet.TopSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.android.material.transition.Hold;
@@ -34,6 +35,7 @@ import java.util.Locale;
 
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.room.LensesModel;
+import it.raffinato.dev.lensminder.ui.userinfo.TSUserInfoDialog;
 import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.WaveHelper;
@@ -104,7 +106,8 @@ public class HomeFragment extends Fragment {
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_storeFragment);
+                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder().addSharedElement(v, "shared_element_container").build();
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_storeFragment, null, null, extras);
             }
         });
 
@@ -167,40 +170,7 @@ public class HomeFragment extends Fragment {
         userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                topSheet.setVisibility(View.VISIBLE);
-                userIcon.setVisibility(View.GONE);
-                MaterialContainerTransform mct = getMCT(userIcon, topSheet);
-                mct.addListener(new Transition.TransitionListener() {
-                    @Override
-                    public void onTransitionStart(@NonNull Transition transition) {
-
-                    }
-
-                    @Override
-                    public void onTransitionEnd(@NonNull Transition transition) {
-                        greyOverlay.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onTransitionCancel(@NonNull Transition transition) {
-                        greyOverlay.setVisibility(View.VISIBLE);
-                    }
-
-                    @Override
-                    public void onTransitionPause(@NonNull Transition transition) {
-
-                    }
-
-                    @Override
-                    public void onTransitionResume(@NonNull Transition transition) {
-
-                    }
-                });
-                TransitionManager.beginDelayedTransition((ViewGroup) root, mct);
-                */
-                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder().addSharedElement(v, "shared_element_container").build();
-                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_TSUserInfoFragment, null, null, extras);
+                new TSUserInfoDialog(requireContext()).show();
             }
         });
     }

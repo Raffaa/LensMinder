@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.transition.MaterialArcMotion;
+import com.google.android.material.transition.MaterialContainerTransform;
+
 import it.raffinato.dev.lensminder.R;
 
 public class StoreFragment extends Fragment {
@@ -21,6 +24,11 @@ public class StoreFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mViewModel = new ViewModelProvider(this).get(StoreViewModel.class);
+
+        MaterialContainerTransform mct = new MaterialContainerTransform();
+        mct.setDuration(600);
+        mct.setFadeMode(MaterialContainerTransform.FADE_MODE_THROUGH);
+        setSharedElementEnterTransition(mct);
     }
 
     @Override
