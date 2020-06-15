@@ -168,7 +168,7 @@ public class HomeFragment extends Fragment {
             lensesLeft.setVisibility(View.VISIBLE);
             daysLeft.setVisibility(View.VISIBLE);
             subtitle.setText("You still have left:");
-            int days = activeLenses == null ? value * Duration.BIWEEKLY.getTime() : value * activeLenses.getLxLensDuration().getTime();
+            int days =  value / 2 * (activeLenses == null ? Duration.BIWEEKLY.getTime() : activeLenses.getLxLensDuration().getTime());
             stockNum.setText(String.format(Locale.getDefault(), "%d", value));
             daysLeft.setText(String.format(Locale.getDefault(), "They will last for another %d days", days));
         } else {
