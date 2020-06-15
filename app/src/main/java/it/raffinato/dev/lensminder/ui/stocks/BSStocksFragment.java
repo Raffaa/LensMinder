@@ -23,7 +23,7 @@ public class BSStocksFragment extends BottomSheetBaseFragment {
 
         Bundle b = getArguments();
         if (b != null) {
-            stockNumber = BSStocksFragmentArgs.fromBundle(getArguments()).getStockNumber();
+            stockNumber = Math.max(0, BSStocksFragmentArgs.fromBundle(getArguments()).getStockNumber());
         }
     }
 

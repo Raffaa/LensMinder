@@ -33,9 +33,11 @@ public class LensMinderApplication extends Application {
     }
 
     public void setStockLevel(int value) {
-        SharedPreferences.Editor editor = this.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE).edit();
-        editor.putInt("lensesremaining", value);
-        editor.apply();
+        if(value >= 0) {
+            SharedPreferences.Editor editor = this.getSharedPreferences(sharedPrefKey, Context.MODE_PRIVATE).edit();
+            editor.putInt("lensesremaining", value);
+            editor.apply();
+        }
     }
 
     public void decreaseStockLevelByN(int N) {

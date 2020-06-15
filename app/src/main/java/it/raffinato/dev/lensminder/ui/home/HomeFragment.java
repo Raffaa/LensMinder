@@ -1,13 +1,12 @@
 package it.raffinato.dev.lensminder.ui.home;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,14 +18,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
 import androidx.transition.Fade;
-import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
 
 import com.gelitenight.waveview.library.WaveView;
-import com.github.techisfun.android.topsheet.TopSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.android.material.transition.Hold;
 import com.google.android.material.transition.MaterialContainerTransform;
 
 import org.joda.time.format.DateTimeFormat;
@@ -36,10 +31,10 @@ import java.util.Locale;
 
 import it.raffinato.dev.lensminder.R;
 import it.raffinato.dev.lensminder.room.LensesModel;
-import it.raffinato.dev.lensminder.ui.userinfo.TSUserInfoDialog;
 import it.raffinato.dev.lensminder.utils.Lens;
 import it.raffinato.dev.lensminder.utils.LensesWrapper;
 import it.raffinato.dev.lensminder.utils.WaveHelper;
+import it.raffinato.dev.lensminder.utils.enums.Duration;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -51,16 +46,6 @@ public class HomeFragment extends Fragment {
     private HomeViewModel mViewModel;
     private int stockNumber = 0;
     private LensesWrapper activeLenses;
-
-    private static MaterialContainerTransform getMCT(View from, View to) {
-        final MaterialContainerTransform mct = new MaterialContainerTransform();
-        mct.setStartView(from);
-        mct.setEndView(to);
-        mct.setScrimColor(Color.TRANSPARENT);
-        mct.setDuration(10000);
-
-        return mct;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -175,12 +160,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void editStocksView(View view, Integer value) {
-        MaterialTextView materialTextView = view.findViewById(R.id.stockNumber);
-
+        MaterialTextView stockNum = view.findViewById(R.id.stockNumber);
+        MaterialTextView subtitle = view.findViewById(R.id.stocksSubtitle);
+        MaterialTextView daysLeft = view.findViewById(R.id.stocksSubtitle2);
+        FrameLayout lensesLeft = view.findViewById(R.id.frameLayoutStockNumber);
         if (value >= 0) {
-            materialTextView.setText(String.format(Locale.getDefault(), "%d", value));
+            lensesLeft.setVisibility(View.VISIBLE);
+            daysLeft.setVisibility(View.VISIBLE);
+            subtitle.setText("You still have left:");
+            int days = activeLenses == null ? value * Duration.BIWEEKLY.getTime() : value * activeLenses.getLxLensDuration().getTime();
+            stockNum.setText(String.format(Locale.getDefault(), "%d", value));
+            daysLeft.setText(String.format(Locale.getDefault(), "They will last for another %d days", days));
         } else {
-            //TODO: Scrivere qualcosa
+            lensesLeft.setVisibility(View.GONE);
+            daysLeft.setVisibility(View.GONE);
+            subtitle.setText("Click here to set your stock levels");
         }
 
     }
