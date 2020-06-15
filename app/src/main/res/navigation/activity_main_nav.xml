@@ -18,6 +18,12 @@
         <action
             android:id="@+id/action_homeFragment_to_BSStocksFragment"
             app:destination="@id/BSStocksFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_TSUserInfoDialogFragment"
+            app:destination="@id/TSUserInfoDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/storeFragment"
@@ -42,6 +48,18 @@
         <argument
             android:name="stockNumber"
             app:argType="integer" />
+    </dialog>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="it.raffinato.dev.lensminder.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
+    <dialog
+        android:id="@+id/TSUserInfoDialogFragment"
+        android:name="it.raffinato.dev.lensminder.ui.userinfo.TSUserInfoDialogFragment"
+        android:label="TSUserInfoDialogFragment" >
+        <action
+            android:id="@+id/action_TSUserInfoDialogFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </dialog>
 
 </navigation>

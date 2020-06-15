@@ -58,6 +58,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="GridCardSubtitle" parent="BoldTextView">
+        <item name="android:textSize">16sp</item>
+    </style>
+
     <!-- AddNewLens Fragment -->
     <style name="Label" parent="BoldTextView">
         <item name="android:textSize">12sp</item>

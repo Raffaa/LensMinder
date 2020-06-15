@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="shared_element_container"
+    android:transitionName="sharedElem_homeshop"
     tools:context=".ui.store.StoreFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <include
+        layout="@layout/coming_soon"/>
 
 </FrameLayout>

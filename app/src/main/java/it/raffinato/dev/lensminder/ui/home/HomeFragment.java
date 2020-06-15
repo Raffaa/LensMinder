@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.FragmentNavigator;
+import androidx.transition.Fade;
 import androidx.transition.Transition;
 import androidx.transition.TransitionManager;
 
@@ -66,15 +67,10 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        Activity a = getActivity();
-        if (a != null) {
-            SharedPreferences pref = getActivity().getSharedPreferences(sharedPrefKey, MODE_PRIVATE);
-            mViewModel.setSharedPrefLiveData(pref);
-        } else {
-            Log.e(getClass().getName(), "Activity NULL;");
-        }
+        SharedPreferences pref = requireActivity().getSharedPreferences(sharedPrefKey, MODE_PRIVATE);
+        mViewModel.setSharedPrefLiveData(pref);
 
-        setExitTransition(new Hold());
+        setExitTransition(new Fade());
     }
 
     @Nullable
@@ -106,7 +102,7 @@ public class HomeFragment extends Fragment {
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder().addSharedElement(v, "shared_element_container").build();
+                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder().addSharedElement(v, "sharedElem_homeshop").build();
                 Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_storeFragment, null, null, extras);
             }
         });
@@ -127,50 +123,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initUserInfo(final View root, final View userIcon) {
-        final View topSheet = root.findViewById(R.id.topSheet);
-        final View greyOverlay = root.findViewById(R.id.greyOverlay);
-
-        greyOverlay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                topSheet.setVisibility(View.GONE);
-                userIcon.setVisibility(View.VISIBLE);
-                MaterialContainerTransform mct = getMCT(topSheet, userIcon);
-                mct.addListener(new Transition.TransitionListener() {
-                    @Override
-                    public void onTransitionStart(@NonNull Transition transition) {
-
-                    }
-
-                    @Override
-                    public void onTransitionEnd(@NonNull Transition transition) {
-                        greyOverlay.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onTransitionCancel(@NonNull Transition transition) {
-                        greyOverlay.setVisibility(View.GONE);
-                    }
-
-                    @Override
-                    public void onTransitionPause(@NonNull Transition transition) {
-
-                    }
-
-                    @Override
-                    public void onTransitionResume(@NonNull Transition transition) {
-
-                    }
-                });
-                TransitionManager.beginDelayedTransition((ViewGroup) root, mct);
-
-            }
-        });
-
         userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new TSUserInfoDialog(requireContext()).show();
+                //new TSUserInfoDialog(requireContext(), requireActivity()).show();
+                Navigation.findNavController(v).navigate(R.id.action_homeFragment_to_TSUserInfoDialogFragment);
             }
         });
     }

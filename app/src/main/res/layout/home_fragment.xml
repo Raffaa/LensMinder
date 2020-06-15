@@ -45,7 +45,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_account" />
@@ -106,7 +106,7 @@
                 android:layout_margin="@dimen/homeMargin"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@id/framelayout">
-
+                <!-- Shop -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                         style="@style/GridMenuCard"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:transitionName="shared_element_container"
+                        android:transitionName="sharedElem_homeshop"
                         tools:ignore="MissingConstraints">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -125,28 +125,47 @@
                             android:layout_height="wrap_content"
                             android:padding="16dp">
 
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/shopTitle"
-                                style="@style/GridCardTitle"
-                                android:layout_width="wrap_content"
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/shopLinearLayout"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="Store"
-                                android:textColor="@color/secondaryColor"
+                                android:orientation="vertical"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/shopTitle"
+                                    style="@style/GridCardTitle"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Store"
+                                    android:textColor="@color/secondaryColor"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/shopSubtitle"
+                                    style="@style/GridCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Explore our new deals"
+                                    android:textColor="@color/secondaryColor"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/shopIcon"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:scaleType="fitEnd"
+                                app:layout_constraintStart_toEndOf="@id/shopLinearLayout"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ic_shop" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <!-- Stocks -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -163,40 +182,78 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:padding="16dp">
 
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/stocksTitle"
-                                style="@style/GridCardTitle"
-                                android:layout_width="wrap_content"
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/stocksLinearLayout"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="Stocks"
-                                android:textColor="@color/secondaryTextColor"
+                                android:orientation="vertical"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/frameLayoutStockNumber">
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/stocksTitle"
+                                    style="@style/GridCardTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="Stocks"
+                                    android:textColor="@color/secondaryTextColor"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/stocksSubtitle"
+                                    style="@style/GridCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="You still have left:"
+                                    android:textColor="@color/secondaryTextColor"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/stocksSubtitle2"
+                                    style="@style/GridCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="They will last for another xx days"
+                                    android:textColor="@color/secondaryTextColor"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
 
                             <FrameLayout
                                 android:id="@+id/frameLayoutStockNumber"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/stocksLinearLayout"
                                 app:layout_constraintTop_toTopOf="parent">
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/stockNumber"
-                                    style="@style/BoldTextView"
+                                <androidx.appcompat.widget.LinearLayoutCompat
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:textColor="@color/secondaryTextColor" />
+                                    android:orientation="vertical"
+                                    android:layout_gravity="center_vertical|end">
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/stockNumber"
+                                        style="@style/TitleBar"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textColor="@color/secondaryTextColor" />
+                                    <com.google.android.material.textview.MaterialTextView
+                                        style="@style/BoldTextView"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textColor="@color/secondaryTextColor"
+                                        android:text="lenses"/>
+                                </androidx.appcompat.widget.LinearLayoutCompat>
                             </FrameLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <!-- History -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -214,21 +271,40 @@
                             android:layout_height="wrap_content"
                             android:padding="16dp">
 
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/historyTitle"
-                                style="@style/GridCardTitle"
-                                android:layout_width="wrap_content"
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/historyLinearLayout"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="History"
-                                android:textColor="@color/secondaryColor"
+                                android:orientation="vertical"
+                                android:layout_marginEnd="8dp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent">
 
-                            <androidx.appcompat.widget.AppCompatImageView
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/historyTitle"
+                                    style="@style/GridCardTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="8dp"
+                                    android:text="History"
+                                    android:textColor="@color/secondaryColor"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/historySubtitle"
+                                    style="@style/GridCardSubtitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Check some statistics :)"
+                                    android:textColor="@color/secondaryColor"/>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/historyIcon"
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:scaleType="fitEnd"
+                                app:layout_constraintStart_toEndOf="@id/historyLinearLayout"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/ic_charts" />
@@ -277,13 +353,6 @@
             app:cornerRadius="24dp" />
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/greyOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha=".4"
-        android:background="@android:color/black"
-        android:visibility="gone" />
     <!-- UserInfo -->
     <FrameLayout
         android:id="@+id/topSheet"
