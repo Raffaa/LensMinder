@@ -181,7 +181,6 @@
                         tools:ignore="MissingConstraints">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:padding="16dp">
@@ -210,15 +209,6 @@
                                     style="@style/GridCardSubtitle"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="You still have left:"
-                                    android:textColor="@color/secondaryTextColor"/>
-
-                                <com.google.android.material.textview.MaterialTextView
-                                    android:id="@+id/stocksSubtitle2"
-                                    style="@style/GridCardSubtitle"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="They will last for another xx days"
                                     android:textColor="@color/secondaryTextColor"/>
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -242,6 +232,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center_horizontal"
                                         android:textColor="@color/secondaryTextColor" />
+
                                     <com.google.android.material.textview.MaterialTextView
                                         style="@style/BoldTextView"
                                         android:layout_width="wrap_content"
@@ -249,6 +240,14 @@
                                         android:layout_gravity="center_horizontal"
                                         android:textColor="@color/secondaryTextColor"
                                         android:text="lenses"/>
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        style="@style/BoldTextView"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textColor="@color/secondaryTextColor"
+                                        android:text="left"/>
                                 </androidx.appcompat.widget.LinearLayoutCompat>
                             </FrameLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>

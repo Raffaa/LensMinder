@@ -162,18 +162,15 @@ public class HomeFragment extends Fragment {
     private void editStocksView(View view, Integer value) {
         MaterialTextView stockNum = view.findViewById(R.id.stockNumber);
         MaterialTextView subtitle = view.findViewById(R.id.stocksSubtitle);
-        MaterialTextView daysLeft = view.findViewById(R.id.stocksSubtitle2);
         FrameLayout lensesLeft = view.findViewById(R.id.frameLayoutStockNumber);
         if (value >= 0) {
             lensesLeft.setVisibility(View.VISIBLE);
-            daysLeft.setVisibility(View.VISIBLE);
             subtitle.setText("You still have left:");
             int days =  value / 2 * (activeLenses == null ? Duration.BIWEEKLY.getTime() : activeLenses.getLxLensDuration().getTime());
             stockNum.setText(String.format(Locale.getDefault(), "%d", value));
-            daysLeft.setText(String.format(Locale.getDefault(), "They will last for another %d days", days));
+            subtitle.setText(String.format(Locale.getDefault(), "They will last for another %d days", days));
         } else {
             lensesLeft.setVisibility(View.GONE);
-            daysLeft.setVisibility(View.GONE);
             subtitle.setText("Click here to set your stock levels");
         }
 
